@@ -1,8 +1,5 @@
 'use strict'
 
-const _ = require('lodash')
-const jwt = require('jsonwebtoken')
-
 const passport = require('passport')
 const passportJwt = require('passport-jwt')
 
@@ -30,7 +27,7 @@ module.exports = (app, config) => {
   }
 
   const strategy = JwtStrategy(jwtOptions, (payload, done) => {
-    const user = users[_.findIndex(users, { id: payload.id })]
+    const user = users.find(x => x.id === payload.id)
     if (user)
       done(null, user)
     else
