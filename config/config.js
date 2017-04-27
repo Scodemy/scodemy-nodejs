@@ -2,8 +2,9 @@
 
 module.exports = {
   development: {
+    port: 3002,    
     connectionString: 'mongodb://localhost:27017/scodemy',
-    port: 3002
+    passportSecret: 'secret'
   },
   production: {
 

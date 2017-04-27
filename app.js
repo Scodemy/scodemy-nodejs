@@ -7,10 +7,12 @@ const port = process.env.PORT || config.port
 
 const app = require('./config/express')()
 
-app.get('/', function (req, res) {
+require('./config/passport')(app, config)
+
+app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.listen(port, function () {
+app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)
 })
