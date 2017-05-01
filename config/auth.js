@@ -6,7 +6,7 @@ const passportJwt = require('passport-jwt')
 const ExtractJwt = passportJwt.ExtractJwt
 const JwtStrategy = passportJwt.Strategy
 
-module.exports = (userData, config) => {
+function init(userData, config) {
   const jwtOptions = {
     jwtFromRequest: ExtractJwt.fromAuthHeader(),
     secretOrKey: config.jwtSecret
@@ -31,3 +31,5 @@ module.exports = (userData, config) => {
     }
   }
 }
+
+module.exports = init
