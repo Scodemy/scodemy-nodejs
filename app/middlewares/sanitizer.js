@@ -8,7 +8,7 @@ function sanitizeObject(obj) {
       obj[key] = xss(obj[key])
     else if (Array.isArray(obj[key]))
       for (let index = 0; index !== obj[key].length; index += 1)
-        obj[key][index] = xss(obj[key][index])
+        sanitizeObject(obj[key][index])
     else if (typeof obj[key] === 'object')
       sanitizeObject(obj[key])
   }
