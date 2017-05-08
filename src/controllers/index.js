@@ -17,7 +17,7 @@ function convertFileName(fileName) {
   currentDir = currentDir || __dirname
   fs.readdirSync(currentDir)
     .forEach(node => {
-      let currentNodePath = `${currentDir}/${node}`
+      const currentNodePath = `${currentDir}/${node}`
       if (fs.lstatSync(currentNodePath).isDirectory())
         loadControllers(`${currentDir}/${node}`)
       else if (fs.lstatSync(currentNodePath).isFile &&
