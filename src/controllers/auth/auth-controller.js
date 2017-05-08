@@ -1,3 +1,5 @@
+'use strict'
+
 function initGetToken(jwt, data, config) {
   return (req, res) => {
     const username = req.body.username
@@ -10,11 +12,11 @@ function initGetToken(jwt, data, config) {
 
       if (user) {
         const payload = { id: user.id }
-        const token = jwt.encode(payload, config.jwtSecret);
+        const token = jwt.encode(payload, config.jwtSecret)
 
         res.json({
           token: token
-        });
+        })
 
         return
       }
