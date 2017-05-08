@@ -10,11 +10,11 @@ function initGetToken(jwt, data, config) {
 
       if (user) {
         const payload = { id: user.id }
-        const token = jwt.encode(payload, config.jwtSecret);
+        const token = jwt.encode(payload, config.jwtSecret)
 
         res.json({
           token: token
-        });
+        })
 
         return
       }
