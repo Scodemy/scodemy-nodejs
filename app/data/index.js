@@ -5,17 +5,17 @@ const path = require('path')
 
 const data = Object.create(null, {})
 
-function convertFileNameToDataModuleName(fileName) {
+function convertFileName(fileName) {
   const indexOfSeparator = fileName.indexOf('-')
   const dataModuleName = fileName.substring(0, indexOfSeparator) + 'Data'
   return dataModuleName
 }
 
-fs.readdirSync('./data')
+fs.readdirSync(__dirname)
   .filter(fileName => fileName.includes('-data'))
   .forEach(fileName => {
     const dataModule = require(path.join(__dirname, fileName))
-    const dataModuleName = convertFileNameToDataModuleName(fileName)
+    const dataModuleName = convertFileName(fileName)
     data[dataModuleName] = dataModule
   });
 

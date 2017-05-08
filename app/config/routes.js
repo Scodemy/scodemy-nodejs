@@ -1,7 +1,8 @@
-module.exports = (app, data, config, jwt) => {
-  const controllers = require('../controllers')(data, config, jwt)
+module.exports = (app, controllers, data, config, jwt) => {
+  const { homeController, authController } = controllers
+  const { userData } = data
 
-  app.get('/', controllers.home.index)
+  app.get('/', homeController)
 
-  app.post('/token', controllers.auth.getToken)
+  app.post('/token', authController)
 }
