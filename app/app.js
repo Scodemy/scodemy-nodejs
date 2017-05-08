@@ -1,3 +1,3 @@
 'use strict'
 
-require('./config/app')()
+require('./config/app-config')()
