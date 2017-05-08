@@ -10,10 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "helmet": "^3.6.0",
     "jwt-simple": "^0.5.1",
     "mongodb": "^2.2.26",
     "passport": "^0.3.2",
-    "passport-jwt": "^2.2.1"
+    "passport-jwt": "^2.2.1",
+    "xss": "^0.3.3"
   },
   "devDependencies": {
     "express": "4.15.2",

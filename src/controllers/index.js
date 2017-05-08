@@ -21,7 +21,7 @@ function convertFileName(fileName) {
       if (fs.lstatSync(currentNodePath).isDirectory())
         loadControllers(`${currentDir}/${node}`)
       else if (fs.lstatSync(currentNodePath).isFile &&
-        currentNodePath.includes(CONTROLLERS_SUFFIX)) {
+               currentNodePath.includes(CONTROLLERS_SUFFIX)) {
         const controllerModule = require(path.join(currentDir, node))
         const controllerModuleName = convertFileName(node)
         controllers[controllerModuleName] = controllerModule
