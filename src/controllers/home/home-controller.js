@@ -1,3 +1,5 @@
+'use strict'
+
 function index(req, res) {
   res.json({
     status: 'Alive'

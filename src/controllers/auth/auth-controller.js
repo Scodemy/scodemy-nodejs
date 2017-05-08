@@ -1,3 +1,5 @@
+'use strict'
+
 function initGetToken(jwt, data, config) {
   return (req, res) => {
     const username = req.body.username
