@@ -1,5 +1,5 @@
-module.exports = (jwt, data, config) => {
-  function getToken(req, res) {
+function initGetToken(jwt, data, config) {
+  return (req, res) => {
     const username = req.body.username
     const password = req.body.password
 
@@ -22,6 +22,12 @@ module.exports = (jwt, data, config) => {
 
     res.sendStatus(401);
   }
-
-  return { getToken }
 }
+
+function init(jwt, data, config) {
+  return {
+    getToken: initGetToken(jwt, data, config)
+  }
+}
+
+module.exports = init

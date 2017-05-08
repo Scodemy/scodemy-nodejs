@@ -19,13 +19,8 @@ const app = express()
 
 // configureRoutes(app, data, config, jwt)
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}!`)
-})
-
 module.exports = () => {
   app.listen(port, () => {
     console.log(`App listening on port ${port}!`)
-  },
-  console.log)
+  })
 }
