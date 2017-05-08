@@ -9,24 +9,34 @@ const helmet = require('helmet')
 const sanitize = require('../middlewares/sanitizer')
 
 const config = require('./config')[env]
-const data = require('../data')
+const initData = require('../data')
 const controllers = require('../controllers')
 const configureRoutes = require('./routes')
-const auth = require('./auth')(data.userData, config)
+const initAuth = require('./auth')
+const initDatabase = require('./database')
 
 const port = process.env.PORT || config.port
 const app = express()
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
-app.use(helmet())
-app.use(sanitize)
-app.use(auth.initialize())
+function configApp(db) {
+  const data = initData(db)
+  const auth = initAuth(data, config)
 
-configureRoutes(app, controllers, data, config, jwt)
+  app.use(bodyParser.urlencoded({ extended: true }))
+  app.use(bodyParser.json())
+  app.use(helmet())
+  app.use(sanitize)
+  app.use(auth.initialize())
 
-function init(callback) {
-  app.listen(port, callback(port))
+  configureRoutes(app, controllers, data, config, jwt)
+
+  app.listen(port, () => {
+    console.log(`App is running on ${port}`)
+  })
 }
 
-module.exports.init = init
+function init() {
+  initDatabase(config.connectionString, configApp)
+}
+
+module.exports = init

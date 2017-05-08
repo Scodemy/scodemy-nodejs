@@ -11,12 +11,17 @@ function convertFileName(fileName) {
   return dataModuleName
 }
 
-fs.readdirSync(__dirname)
-  .filter(fileName => fileName.includes('-data'))
-  .forEach(fileName => {
-    const dataModule = require(path.join(__dirname, fileName))
-    const dataModuleName = convertFileName(fileName)
-    data[dataModuleName] = dataModule
-  });
+function init(db) {
+  fs.readdirSync(__dirname)
+    .filter(fileName => fileName.includes('-data'))
+    .forEach(fileName => {
+      const dataModule = require(path.join(__dirname, fileName))
+      const dataModuleName = convertFileName(fileName)
 
-module.exports = data
+      data[dataModuleName] = dataModule(db)
+    });
+
+  return data
+}
+
+module.exports = init

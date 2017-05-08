@@ -1,22 +1,10 @@
 'use strict'
 
-function getAll() {
-  const users = [
-    {
-      id: 1,
-      username: 'superman',
-      password: 'secret'
-    },
-    {
-      id: 2,
-      username: 'gosho',
-      password: 'password'
-    }
-  ]
-
-  return users
+function createUser() {
+  console.log('user created')
 }
 
-module.exports = {
-  getAll
+module.exports = (mongo) => {
+  console.log(mongo)
+  return { createUser }
 }

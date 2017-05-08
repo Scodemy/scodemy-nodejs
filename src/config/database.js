@@ -2,11 +2,8 @@
 
 const MongoClient = require('mongodb').MongoClient
 
-module.exports = (connectionString) => {
+module.exports = (connectionString, configuredAppCb) => {
   MongoClient.connect(connectionString, (err, db) => {
-    if (err)
-      console.log(err)
-    else
-      console.log('Success')
+    configuredAppCb(db)
   })
 }
