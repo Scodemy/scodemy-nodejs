@@ -5,6 +5,8 @@ const env = process.env.NODE_ENV || 'development'
 const express = require('express')
 const bodyParser = require('body-parser')
 const jwt = require('jwt-simple')
+const helmet = require('helmet')
+const sanitize = require('../middlewares/sanitizer')
 
 const config = require('./config')[env]
 const data = require('../data')
@@ -17,6 +19,8 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(helmet())
+app.use(sanitize)
 app.use(auth.initialize())
 
 configureRoutes(app, controllers, data, config, jwt)
