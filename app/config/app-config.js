@@ -21,8 +21,8 @@ app.use(auth.initialize())
 
 configureRoutes(app, controllers, data, config, jwt)
 
-module.exports = () => {
-  app.listen(port, () => {
-    console.log(`App listening on port ${port}!`)
-  }, console.log)
+function init(callback) {
+  app.listen(port, callback(port))
 }
+
+module.exports.init = init
