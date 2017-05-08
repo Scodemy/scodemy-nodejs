@@ -17,7 +17,6 @@ function init(db) {
     .forEach(fileName => {
       const dataModule = require(path.join(__dirname, fileName))
       const dataModuleName = convertFileName(fileName)
-
       data[dataModuleName] = dataModule(db)
     });
 
