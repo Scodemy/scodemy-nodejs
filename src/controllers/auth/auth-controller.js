@@ -22,7 +22,7 @@ function initGetToken(jwt, data, config) {
       }
     }
 
-    res.sendStatus(401);
+    res.sendStatus(401)
   }
 }
 
